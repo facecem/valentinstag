@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Für dich ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      font-family: "Segoe UI", sans-serif;
+      color: white;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 40px;
+      border-radius: 20px;
+      backdrop-filter: blur(8px);
+      animation: fadeIn 2s ease;
+      max-width: 500px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+
+    .heart {
+      font-size: 3rem;
+      animation: pulse 1.5s infinite;
+      margin-top: 20px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <h1>Für dich ❤️</h1>
+    <p>
+      Seitdem du in meinem Leben bist,<br>
+      fühlt sich jeder Tag ein bisschen mehr nach Zuhause an.<br><br>
+      Danke, dass es dich gibt.<br>
+      Ich hab dich lieb.
+    </p>
+    <div class="heart">💖</div>
+  </div>
+</body>
+</html>
