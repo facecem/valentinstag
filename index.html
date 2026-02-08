@@ -84,6 +84,7 @@
       font-size: 1.05rem;
       line-height: 1.7;
       margin-bottom: 25px;
+      transition: opacity 0.3s ease;
     }
 
     /* 🗳 ABSTIMMUNG */
@@ -117,6 +118,10 @@
     .image {
       padding: 0;
       overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 6rem;
     }
 
     .image img {
@@ -171,7 +176,7 @@
         19:00 Uhr
       </div>
 
-      <div class="text">
+      <div class="text" id="mainText">
         Hab zwar noch keinen Plan was wir machen.<br>
         Aber wird safe voll schön<br><br>
         Ist eigentlich erster Valentinstag auch
@@ -180,22 +185,38 @@
 
       <!-- 🗳 ABSTIMMUNG -->
       <div class="vote">
-        <button onclick="vote(this)">Ja 🥵</button>
-        <button onclick="vote(this)">Vielleicht 👹</button>
-        <button onclick="vote(this)">Nein 🥶</button>
+        <button onclick="vote(this, 'ja')">Ja 🥵</button>
+        <button onclick="vote(this, 'vielleicht')">Vielleicht 👹</button>
+        <button onclick="vote(this, 'nein')">Nein 🥶</button>
       </div>
     </div>
 
     <!-- RECHTE KARTE -->
-    <div class="card image">
-      <img src="valentine.jpeg" alt="Wir zwei">
+    <div class="card image" id="imageCard">
+      <img id="mainImage" src="valentine.jpeg" alt="Wir zwei">
     </div>
   </div>
 
   <script>
-    function vote(btn) {
-      document.querySelectorAll(".vote button").forEach(b => b.classList.remove("active"));
+    function vote(btn, choice) {
+      document.querySelectorAll(".vote button")
+        .forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
+
+      const text = document.getElementById("mainText");
+      const imageCard = document.getElementById("imageCard");
+      const image = document.getElementById("mainImage");
+
+      if (choice === "ja") {
+        text.innerHTML = "ich vermisse dich maus";
+        image.style.display = "block";
+        imageCard.innerHTML = '<img id="mainImage" src="valentine.jpeg" alt="Wir zwei">';
+      }
+
+      if (choice === "nein") {
+        text.innerHTML = "sicher?";
+        imageCard.innerHTML = "🔫";
+      }
     }
   </script>
 
