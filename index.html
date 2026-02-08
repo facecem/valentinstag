@@ -15,6 +15,23 @@
       background: radial-gradient(circle at top left, #5a1a1a, #1a0505);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: #f5f5f5;
+      overflow: hidden;
+    }
+
+    /* 🎀 FALLENDE SCHLEIFEN */
+    .ribbon {
+      position: fixed;
+      top: -50px;
+      font-size: 24px;
+      opacity: 0.6;
+      animation: fall linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+      }
     }
 
     .wrapper {
@@ -23,6 +40,7 @@
       display: grid;
       grid-template-columns: 1.2fr 1fr;
       gap: 30px;
+      z-index: 2;
     }
 
     .card {
@@ -37,7 +55,6 @@
     h1 {
       font-size: 2.8rem;
       margin: 0 0 10px;
-      letter-spacing: 0.5px;
     }
 
     .tags {
@@ -54,8 +71,7 @@
     }
 
     .meta {
-      margin-bottom: 25px;
-      line-height: 1.6;
+      margin-bottom: 20px;
       opacity: 0.9;
     }
 
@@ -67,7 +83,35 @@
     .text {
       font-size: 1.05rem;
       line-height: 1.7;
-      opacity: 0.95;
+      margin-bottom: 25px;
+    }
+
+    /* 🗳 ABSTIMMUNG */
+    .vote {
+      display: flex;
+      gap: 12px;
+    }
+
+    .vote button {
+      flex: 1;
+      padding: 12px;
+      border-radius: 12px;
+      border: none;
+      font-size: 0.95rem;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      transition: all 0.2s ease;
+    }
+
+    .vote button:hover {
+      background: rgba(255, 255, 255, 0.22);
+    }
+
+    .vote button.active {
+      background: #ff7a9c;
+      color: #1a0505;
+      font-weight: 600;
     }
 
     .image {
@@ -84,14 +128,8 @@
     }
 
     @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @media (max-width: 768px) {
@@ -103,8 +141,22 @@
 </head>
 
 <body>
+
+  <!-- 🎀 SCHLEIFEN -->
+  <script>
+    for (let i = 0; i < 18; i++) {
+      const r = document.createElement("div");
+      r.className = "ribbon";
+      r.innerText = "🎀";
+      r.style.left = Math.random() * 100 + "vw";
+      r.style.animationDuration = 8 + Math.random() * 8 + "s";
+      r.style.fontSize = 16 + Math.random() * 18 + "px";
+      document.body.appendChild(r);
+    }
+  </script>
+
   <div class="wrapper">
-    <!-- LINKe KARTE -->
+    <!-- LINKE KARTE -->
     <div class="card">
       <h1>Valentinstag</h1>
 
@@ -120,16 +172,32 @@
       </div>
 
       <div class="text">
-        <br>
-        <br><br>
-        
+        Hab zwar noch keinen Plan was wir machen.<br>
+        Aber wird safe voll schön<br><br>
+        Ist eigentlich erster Valentinstag auch
+        auf Rice Purity Test?
+      </div>
+
+      <!-- 🗳 ABSTIMMUNG -->
+      <div class="vote">
+        <button onclick="vote(this)">Ja 🥵</button>
+        <button onclick="vote(this)">Vielleicht 👹</button>
+        <button onclick="vote(this)">Nein 🥶</button>
       </div>
     </div>
 
-    <!-- RECHTE KARTE: BILD -->
+    <!-- RECHTE KARTE -->
     <div class="card image">
       <img src="valentine.jpeg" alt="Wir zwei">
     </div>
   </div>
+
+  <script>
+    function vote(btn) {
+      document.querySelectorAll(".vote button").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+    }
+  </script>
+
 </body>
 </html>
